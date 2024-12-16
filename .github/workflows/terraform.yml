@@ -113,15 +113,6 @@ jobs:
               }
             }')
           echo "Terraform Plan triggered: $response"
-          # Wait for the plan to complete
-          plan_id=$(echo $response | jq -r '.data.id')
-          echo "Waiting for Plan to finish..."
-          sleep 10 # Wait for the plan to be processed, adjust if needed
-          curl --silent \
-            --request GET \
-            --url "https://app.terraform.io/api/v2/plans/$plan_id" \
-            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
-            --header "Content-Type: application/vnd.api+json"
       
     - name: Trigger Apply in Terraform Cloud (Auto-Approve)
       id: apply
@@ -141,12 +132,3 @@ jobs:
               }
             }')
           echo "Terraform Apply triggered: $response"
-          # Wait for the apply to complete
-          apply_id=$(echo $response | jq -r '.data.id')
-          echo "Waiting for Apply to finish..."
-          sleep 10 # Wait for the apply to be processed, adjust if needed
-          curl --silent \
-            --request GET \
-            --url "https://app.terraform.io/api/v2/applies/$apply_id" \
-            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
-            --header "Content-Type: application/vnd.api+json"
