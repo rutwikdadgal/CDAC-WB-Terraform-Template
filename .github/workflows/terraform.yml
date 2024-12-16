@@ -91,12 +91,12 @@ jobs:
     - name: Terraform Plan
       id: plan
       run: |
-           terraform plan -input=false -out=tfplan || echo "Terraform Plan completed with exit code $?"
+           terraform plan || echo "Terraform Plan completed with exit code $?"
       env:
         TF_VAR_client_secret: ${{ secrets.client_secret }}
     
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push' && steps.plan.outcome == 'success'
-      run: terraform apply -auto-approve tfplan
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
+      run: terraform apply -auto-approve 
       env:
         TF_VAR_client_secret: ${{ secrets.client_secret }}
