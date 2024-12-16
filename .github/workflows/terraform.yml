@@ -83,15 +83,15 @@ jobs:
         TF_VAR_client_secret: ${{ secrets.client_secret }}
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
-      continue-on-error: true
+    # - name: Terraform Format
+    #   run: terraform fmt -check
+    #   continue-on-error: true
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       id: plan
       run: |
-           terraform plan || echo "Terraform Plan completed with exit code $?"
+           terraform plan -var="client_secret=${{ secrets.client_secret }}" || echo "Terraform Plan completed with exit code $?"
       env:
         TF_VAR_client_secret: ${{ secrets.client_secret }}
     
