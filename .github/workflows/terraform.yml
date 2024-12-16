@@ -97,9 +97,12 @@ jobs:
     #   continue-on-error: true
 
     # Generates an execution plan for Terraform
-    - name: Terraform Plan
+
+    - name: Trigger Plan in Terraform Cloud
+      id: plan
       run: |
-          curl \
+          # Trigger Plan Action in Terraform Cloud
+          response=$(curl --silent \
             --request POST \
             --url "https://app.terraform.io/api/v2/workspaces/${{ secrets.TFC_WORKSPACE }}/actions" \
             --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
@@ -108,17 +111,42 @@ jobs:
               "data": {
                 "type": "plan"
               }
-            }'
-
-    - name: Trigger Apply in Terraform Cloud
+            }')
+          echo "Terraform Plan triggered: $response"
+          # Wait for the plan to complete
+          plan_id=$(echo $response | jq -r '.data.id')
+          echo "Waiting for Plan to finish..."
+          sleep 10 # Wait for the plan to be processed, adjust if needed
+          curl --silent \
+            --request GET \
+            --url "https://app.terraform.io/api/v2/plans/$plan_id" \
+            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
+            --header "Content-Type: application/vnd.api+json"
+      
+    - name: Trigger Apply in Terraform Cloud (Auto-Approve)
+      id: apply
       run: |
-          curl \
+          # Trigger Apply Action in Terraform Cloud with auto-approve
+          response=$(curl --silent \
             --request POST \
             --url "https://app.terraform.io/api/v2/workspaces/${{ secrets.TFC_WORKSPACE }}/actions" \
             --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
             --header "Content-Type: application/vnd.api+json" \
             --data '{
               "data": {
-                "type": "apply"
+                "type": "apply",
+                "attributes": {
+                  "auto-approve": true
+                }
               }
-            }'
+            }')
+          echo "Terraform Apply triggered: $response"
+          # Wait for the apply to complete
+          apply_id=$(echo $response | jq -r '.data.id')
+          echo "Waiting for Apply to finish..."
+          sleep 10 # Wait for the apply to be processed, adjust if needed
+          curl --silent \
+            --request GET \
+            --url "https://app.terraform.io/api/v2/applies/$apply_id" \
+            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
+            --header "Content-Type: application/vnd.api+json"
