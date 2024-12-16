@@ -1,8 +1,7 @@
 # service principal
-subscription_id = ""
-client_id       = ""
-client_secret   = ""
-tenant_id       = ""
+subscription_id = "48cb4383-6e85-42cf-9d12-7fc574ee0b5f"
+client_id       = "22a8fdfc-ea52-4e9d-8a92-b418306f97f5"
+tenant_id       = "6ab50e79-eca6-4913-87ef-d8e572838838"
 
 # resource group
 resource_group_name     = "preprod-esanjeevani-rg-wb"
@@ -214,8 +213,8 @@ cosmosdb2_is_virtual_network_filter_enabled          = true
 mysql_flexible_server_pvtdns_zone_name                           = "preprod-mysql-db-wb.mysql.database.azure.com"
 mysql_flexible_server_private_dns_zone_virtual_network_link_name = "pvtdnslinkVnetZone.com"
 mysql_flexible_server_name                                       = "preprod-esanjeevani-mysqldb-wb"
-mysql_flexible_server_administrator_login                        = ""
-mysql_flexible_server_administrator_password                     = ""
+mysql_flexible_server_administrator_login                        = "azureuser"
+mysql_flexible_server_administrator_password                     = "azureuser@123"
 mysql_flexible_server_backup_retention_days                      = 7
 mysql_flexible_server_geo_redundant_backup_enabled               = true
 mysql_flexible_server_sku_name                                   = "GP_Standard_D2ds_v4"
@@ -256,8 +255,8 @@ vm_caching                          = "ReadWrite"
 vm_create_option                    = "FromImage"
 vm_managed_disk_type                = "Standard_LRS"
 vm_computer_name                    = "azureuser"
-vm_admin_username                   = ""
-vm_admin_password                   = ""
+vm_admin_username                   = "azureuser"
+vm_admin_password                   = "azureuser@123"
 vm_disable_password_authentication  = false
 vm_environment                      = "staging"
 private_ip_address                  = "172.18.34.7"
@@ -274,7 +273,26 @@ vng_private_ip_address_allocation = "Dynamic"
 vng_client_address_space          = ["10.2.0.0/24"]
 vng_root_certificate_name         = "Root-CA"
 public_cert_data                  = <<EOF
-
+MIIDuzCCAqOgAwIBAgIQCHTZWCM+IlfFIRXIvyKSrjANBgkqhkiG9w0BAQsFADBn
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSYwJAYDVQQDEx1EaWdpQ2VydCBGZWRlcmF0ZWQgSUQg
+Um9vdCBDQTAeFw0xMzAxMTUxMjAwMDBaFw0zMzAxMTUxMjAwMDBaMGcxCzAJBgNV
+BAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdp
+Y2VydC5jb20xJjAkBgNVBAMTHURpZ2lDZXJ0IEZlZGVyYXRlZCBJRCBSb290IENB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAEB4pcCqnNNOWE6Ur5j
+QPUH+1y1F9KdHTRSza6k5iDlXq1kGS1qAkuKtw9JsiNRrjltmFnzMZRBbX8Tlfl8
+zAhBmb6dDduDGED01kBsTkgywYPxXVTKec0WxYEEF0oMn4wSYNl0lt2eJAKHXjNf
+GTwiibdP8CUR2ghSM2sUTI8Nt1Omfc4SMHhGhYD64uJMbX98THQ/4LMGuYegou+d
+GTiahfHtjn7AboSEknwAMJHCh5RlYZZ6B1O4QbKJ+34Q0eKgnI3X6Vc9u0zf6DH8
+Dk+4zQDYRRTqTnVO3VT8jzqDlCRuNtq6YvryOWN74/dq8LQhUnXHvFyrsdMaE1X2
+DwIDAQABo2MwYTAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNV
+HQ4EFgQUGRdkFnbGt1EWjKwbUne+5OaZvRYwHwYDVR0jBBgwFoAUGRdkFnbGt1EW
+jKwbUne+5OaZvRYwDQYJKoZIhvcNAQELBQADggEBAHcqsHkrjpESqfuVTRiptJfP
+9JbdtWqRTmOf6uJi2c8YVqI6XlKXsD8C1dUUaaHKLUJzvKiazibVuBwMIT84AyqR
+QELn3e0BtgEymEygMU569b01ZPxoFSnNXc7qDZBDef8WfqAV/sxkTi8L9BkmFYfL
+uGLOhRJOFprPdoDIUBB+tmCl3oDcBy3vnUeOEioz8zAkprcb3GHwHAK+vHmmfgcn
+WsfMLH4JCLa/tRYL+Rw/N3ybCkDp00s0WUZ+AoDywSl0Q/ZEnNY0MsFiw6LyIdbq
+M/s/1JRtO3bDSzD9TazRVzn2oBqzSa8VgIo5C1nOnoAKJTlsClJKvIhnRlaLQqk=
 EOF
 # need to paste the cert data between EOF
 
