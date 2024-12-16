@@ -7,9 +7,9 @@ variable "client_id" {
     description = "Service principal ID"
 }
 
-#variable "client_secret" {
-#   description = "Service Principal secret"
-#}
+variable "client_secret" {
+   description = "Service Principal secret"
+}
 
 variable "tenant_id" {
     description = "Azure Service principal tenant_id"
