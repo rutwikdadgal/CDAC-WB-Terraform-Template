@@ -87,8 +87,7 @@ jobs:
       run: |
           terraform init \
           -backend-config="hostname=app.terraform.io" \
-          -backend-config="organization=${{ secrets.TFC_ORG }}" \
-          -backend-config="workspace=${{ secrets.TFC_WORKSPACE }}"
+          -backend-config="organization=${{ secrets.TFC_ORG }}" 
       env:
         TF_VAR_client_secret: ${{ secrets.client_secret }}
 
