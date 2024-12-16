@@ -98,14 +98,27 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      id: plan
       run: |
-           terraform plan -out=tfplan || echo "Terraform Plan completed with exit code $?"
-      env:
-        TF_VAR_client_secret: ${{ secrets.client_secret }}
-    
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
-      run: terraform apply -auto-approve tfplan
-      env:
-        TF_VAR_client_secret: ${{ secrets.client_secret }}
+          curl \
+            --request POST \
+            --url "https://app.terraform.io/api/v2/workspaces/${{ secrets.TFC_WORKSPACE }}/actions" \
+            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
+            --header "Content-Type: application/vnd.api+json" \
+            --data '{
+              "data": {
+                "type": "plan"
+              }
+            }'
+
+    - name: Trigger Apply in Terraform Cloud
+      run: |
+          curl \
+            --request POST \
+            --url "https://app.terraform.io/api/v2/workspaces/${{ secrets.TFC_WORKSPACE }}/actions" \
+            --header "Authorization: Bearer ${{ secrets.TFC_TOKEN }}" \
+            --header "Content-Type: application/vnd.api+json" \
+            --data '{
+              "data": {
+                "type": "apply"
+              }
+            }'
