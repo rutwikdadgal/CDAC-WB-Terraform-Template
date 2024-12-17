@@ -1,19 +1,19 @@
 # Service Principal
-variable "subscription_id" {
-    description = "Azure Subscription ID"
-}
+#variable "subscription_id" {
+ #   description = "Azure Subscription ID"
+#}
 
-variable "client_id" {
-    description = "Service principal ID"
-}
+#variable "client_id" {
+ #   description = "Service principal ID"
+#}
 
-variable "client_secret" {
-   description = "Service Principal secret"
-}
+#variable "client_secret" {
+ #  description = "Service Principal secret"
+#}
 
-variable "tenant_id" {
-    description = "Azure Service principal tenant_id"
-}
+#variable "tenant_id" {
+ #   description = "Azure Service principal tenant_id"
+#}
 
 # Resource group
 variable "resource_group_location" {
