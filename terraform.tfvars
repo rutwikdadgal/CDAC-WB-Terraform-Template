@@ -6,7 +6,7 @@ resource_group_name     = "preprod-esanjeevani-rg-wb"
 resource_group_location = "Central India"
 
 # storage account
-Storage_account_name                              = "uatfrontendappwb"
+Storage_account_name                              = "uatfrontendappstgaccwb"
 storage_account_account_tier                      = "Standard"
 storage_account_account_replication_type          = "LRS"
 storage_account_environment                       = "staging"
